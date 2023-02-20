@@ -80,6 +80,23 @@ def dislike(photo_id: str, chat_id: str) -> bool:
 
     return True
 
-add_image('test.png')
-# print(like('test.png', '4241345242314213145'))
-print(dislike('test.png', '4241345242314213145'))
+
+def get_data(photo_id: str) -> dict:
+    '''Get image data
+    
+    Args:
+        photo_id (str): Image name
+        
+    Returns:
+        dict: Image data
+    '''
+    q = Query()
+    if not img_table.contains(q.photo_id == photo_id):    # Check if image exists
+        return False
+    
+    img = img_table.get(q.photo_id == photo_id)
+    return img
+
+# add_image('test.png')
+# # print(like('test.png', '4241345242314213145'))
+print(get_data('test.png'))
