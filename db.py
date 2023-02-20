@@ -27,7 +27,7 @@ def add_image(photo_id: str) -> bool:
     return True
 
 
-def like(photo_id: str, chat_id: str) -> bool:
+def add_like(photo_id: str, chat_id: str) -> bool:
     '''Like image
     
     Args:
@@ -54,7 +54,7 @@ def like(photo_id: str, chat_id: str) -> bool:
     return True
 
 
-def dislike(photo_id: str, chat_id: str) -> bool:
+def add_dislike(photo_id: str, chat_id: str) -> bool:
     '''Like image
     
     Args:
@@ -99,4 +99,4 @@ def get_data(photo_id: str) -> dict:
 
 # add_image('test.png')
 # # print(like('test.png', '4241345242314213145'))
-print(get_data('test.png'))
+# print(get_data('test.png'))
