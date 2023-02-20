@@ -41,6 +41,11 @@ def dislike():
             return {'status': 200}
         return {'status': 400}
     
+
 @app.route('/api/get-data/<photo_id>')
 def get_data_view(photo_id: str):
-    return get_data(photo_id)
+    '''get data about img'''
+    data = get_data(photo_id)
+    if data:
+        return data
+    return {'status': 400}
