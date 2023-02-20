@@ -44,7 +44,3 @@ def dislike():
 @app.route('/api/get-data/<photo_id>')
 def get_data_view(photo_id: str):
     return get_data(photo_id)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
