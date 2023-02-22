@@ -23,8 +23,8 @@ def add_image(photo_id: str) -> bool:
     q = Query()
     if img_table.contains(q.photo_id == photo_id):    # Check if image already exists
         return False
-    img_table.insert(data)
-    return True
+    return img_table.insert(data)
+    
 
 
 def add_like(photo_id: str, chat_id: str) -> bool:
@@ -81,7 +81,7 @@ def add_dislike(photo_id: str, chat_id: str) -> bool:
     return True
 
 
-def get_data(photo_id: str) -> dict:
+def get_data(doc_id: str) -> dict:
     '''Get image data
     
     Args:
@@ -90,13 +90,12 @@ def get_data(photo_id: str) -> dict:
     Returns:
         dict: Image data
     '''
-    q = Query()
-    if not img_table.contains(q.photo_id == photo_id):    # Check if image exists
+    photo = img_table.get(doc_id=doc_id)
+    if not photo:    # Check if image exists
         return False
-    
-    img = img_table.get(q.photo_id == photo_id)
-    return img
 
-# add_image('test.png')
-# # print(like('test.png', '4241345242314213145'))
+    return photo
+
+add_image('test.png')
+print(add_like('test.png', '4241345242314213145'))
 # print(get_data('test.png'))

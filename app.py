@@ -11,8 +11,9 @@ def home():
         photo_id = data['photo_id'] # get photo id 
 
         # add photo to database
-        if add_image(photo_id):
-            return {'status': 200}
+        doc_id = add_image(photo_id)
+        if doc_id:
+            return {'doc_id': add_image(photo_id)}
         return {'status': 400}
 
 
