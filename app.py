@@ -13,7 +13,7 @@ def home():
         # add photo to database
         doc_id = add_image(photo_id)
         if doc_id:
-            return {'doc_id': add_image(photo_id)}
+            return {'doc_id': doc_id}
         return {'status': 400}
 
 
