@@ -27,7 +27,7 @@ def add_image(photo_id: str) -> bool:
     
 
 
-def add_like(photo_id: str, chat_id: str) -> bool:
+def add_like(doc_id: str, chat_id: str) -> bool:
     '''Like image
     
     Args:
@@ -37,24 +37,23 @@ def add_like(photo_id: str, chat_id: str) -> bool:
     Returns:
         bool: True if image was liked, False if image doesn't exist
     '''
-    q = Query()
-    if not img_table.contains(q.photo_id == photo_id):    # Check if image exists
+    doc = img_table.get(doc_id=doc_id)
+    if not doc:    # Check if image exists
         return False
     
-    img = img_table.get(q.photo_id == photo_id)
-    if chat_id in img['likes']:
+    if chat_id in doc['likes']:
         return False
     
-    if chat_id in img['dislikes']:
-        img['dislikes'].remove(chat_id) 
+    if chat_id in doc['dislikes']:
+        doc['dislikes'].remove(chat_id) 
     
-    img['likes'].append(chat_id)
-    img_table.update(img)
+    doc['likes'].append(chat_id)
+    img_table.update(doc)
     
     return True
 
 
-def add_dislike(photo_id: str, chat_id: str) -> bool:
+def add_dislike(doc_id: str, chat_id: str) -> bool:
     '''Like image
     
     Args:
@@ -64,20 +63,19 @@ def add_dislike(photo_id: str, chat_id: str) -> bool:
     Returns:
         bool: True if image was liked, False if image doesn't exist
     '''
-    q = Query()
-    if not img_table.contains(q.photo_id == photo_id):    # Check if image exists
+    doc = img_table.get(doc_id=doc_id)
+    if not doc:    # Check if image exists
         return False
     
-    img = img_table.get(q.photo_id == photo_id)
-    if chat_id in img['dislikes']:
+    if chat_id in doc['dislikes']:
         return False
     
-    if chat_id in img['likes']:
-        img['likes'].remove(chat_id)
+    if chat_id in doc['likes']:
+        doc['likes'].remove(chat_id) 
     
-    img['dislikes'].append(chat_id)
-    img_table.update(img)
-
+    doc['dislikes'].append(chat_id)
+    img_table.update(doc)
+    
     return True
 
 
